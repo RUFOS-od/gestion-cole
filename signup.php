@@ -38,17 +38,33 @@
 <body class="text-center">
 
     <main class="form-signin">
-        <form>
+        <form action="signup-check.php" method="post">
+            <?php if (isset($_GET['error'])) { ?>
+            <p class="error"><?php echo $_GET['error']; ?></p>
+            <?php } ?>
+
+            <?php if (isset($_GET['success'])) { ?>
+            <p class="success"><?php echo $_GET['success']; ?></p>
+            <?php } ?>
             <h1 class="h3 mb-3 fw-normal">sign Up</h1>
 
             <div class="form-floating">
-                <input type="text" class="form-control" id="floatingInput" placeholder="Name">
                 <label for="floatingInput">Name</label>
-            </div><br>
+                <?php if (isset($_GET['name'])) { ?>
+                <input type="text" name="name" placeholder="Name" value="<?php echo $_GET['name']; ?>"><br>
+                <?php }else{ ?>
+                <input type="text" name="name" class="form-control" id="floatingInput" placeholder="Name"><br>
+                <?php }?>
+
+            </div>
             <div class="form-floating">
-                <input type="text" class="form-control" id="floatingInput" placeholder="User Name">
                 <label for="floatingInput">User Name</label>
-            </div><br>
+                <?php if (isset($_GET['uname'])) { ?>
+                <input type="text" name="uname" placeholder="User Name" value="<?php echo $_GET['uname']; ?>"><br>
+                <?php }else{ ?>
+                <input type="text" name="uname" class="form-control" id="floatingInput" placeholder="User Name"><br>
+                <?php }?>
+            </div>
             <div class="form-floating">
                 <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
                 <label for="floatingPassword">Password</label>
@@ -60,7 +76,7 @@
 
 
             <button class="w-100 btn btn-lg btn-primary" type="submit">Sign Up</button>
-            <a href="index.php" class="ca">Create an account</a>
+            <a href="index.php" class="ca">Already have an account?</a>
 
             <p class="mt-5 mb-3 text-muted">&copy; 2023 Rufos</p>
         </form>
